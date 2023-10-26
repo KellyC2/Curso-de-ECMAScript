@@ -99,5 +99,77 @@
     const [value,updateValue]=useState(3);
 
 
+// -------------SPREAD OPERATOR---------------
+//El operador de propagación(spread operator), como su nombre lo dice, consiste en propagar o expandir los elementos de un iterable, ya sea un array o string utilizando tres puntos(...) dentro de un array.
+
+    //Vamos a expandir el string "HOLA" en varios elementos.
+        const array1=[..."HOLA"];
+        console.log(array1);//["H","O","L", "A"]
+
+    //Vamos a expandir un array:
+        const array2=[...array1];
+        console.log(array2);//["H","O","L", "A"]. En este ejemolo hemos creado otro array con los valores del primero. Explicamos en otro ejemplo los cuidados a tener en cuenta. 
+
+    //También se utiliza para objetos
+        let person={name:"Oscar", age:30};
+        let country="MX";
+        let data={...person, country};
+        console.log(data);
+
+    //Copiando arrays con el operador de propagación:Para realizar una copia de un array, deberás tener cuidado de la referencia en memoria. Los arrays se guardan en una referencia en la memoria del computador, al crear una copia, este tendrá la misma referencia que el original. Debido a esto. si cambias algo en la copia, tambien lo harás en el original.
+
+        //Traditional Way
+        let originalArray=[1,2,3,4,5];
+        let copyArray=originalArray;
+        copyArray[0]=0;
+        console.log(copyArray);//[ 0, 2, 3, 4, 5 ]
+        console.log(originalArray);//[ 0, 2, 3, 4, 5 ]
+    
+        //Para evitar la modificación del array original, utilizamos el operador de propagación para crear una copia del array que utilice una referencia en memoria diferente al original. 
+
+        //Spread operator
+        let names=["Maria", "Ana","Antonia", "Mauricio"];
+        let womanNames=[...names];
+        womanNames[3]="Anastasia"
+        console.log(names);// [ 'Maria', 'Ana', 'Antonia', 'Mauricio' ]
+        console.log(womanNames);// [ 'Maria', 'Ana', 'Antonia', 'Anastasia' ]
+    //Uniendo arrays y añadir elementos con el operador de propagación:Para unir dos arrays con el operador de propagación, simplemente debes separarlos por comas en un array. 
+        let serie1=[1,2,3];
+        let numero=4;
+        let serie2=[5,6,7];
+        let todoJunto=[...serie1, numero, ...serie2];
+        console.log(todoJunto);//[ 1, 2, 3, 4, 5, 6, 7 ]
 
 
+//-----------------REST------------------
+//El rest operator es usado solo en argumentos de una función y para desestructurar. 
+//El parámetro rest consiste agrupar el residuo de elementos mediante la sintaxis de tres puntos(...) seguido de una variable que contendrá los elementos en un array.
+    //1. La primera forma de usar rest operator es para aceptar un número infinito de argumentos  en una función y los agrupa como un array. 
+        //Ejemplo1: En este ejemplo puedes visualizar la función sumar que tiene cinco argumentos que son representados por el rest operator en la funcion.
+            function sumar(...numbers){
+                console.log(numbers);
+            };
+            sumar(1,2,3,4,5,6,7);
+            //Ejemplo 2
+            function hola(first, second, ...rest){
+                console.log(first, second);
+                console.log(...rest);
+            }
+            hola("lo", "ves", " desde aqui", "pertenece", "al array");
+    //2. La segunda forma de usar rest operator es para agrupar los elementos residuales o restantes en un array:
+        //Ejemplo: 
+            const [primer, segundo, ...restante]=[1,2,3,4,5,6,7];
+            console.log(restante);
+
+    //3. la tercera forma de uso del rest operator es para agrupar propiedades restantes en un objeto.
+         //Ejemplo:
+            const estudiante={
+                name:"Lucas",
+                age: 38,
+                city:"London"
+            }
+
+            const{name, ...otherValues}=estudiante;
+            console.log(otherValues);//{ age: 38, city: 'London' }
+
+//El parámetro rest agrupa el residuo de elementos y siempre debe estar en la última posición, mientras que el operador de propagación expande los elementos de un iterable en un array y no importa en que lugar esté situado. 
