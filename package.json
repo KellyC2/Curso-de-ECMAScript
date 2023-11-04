@@ -11,5 +11,6 @@
     "ecmascript"
   ],
   "author": "Kelly Condori",
-  "license": "MIT"
+  "license": "MIT",
+  "type":"module"
 }
